@@ -91,31 +91,24 @@ fs.appendFile("builtin-modules/fileContainer/emails.json", jsonContent , (err) =
         console.log("file append successful");
     }
 })
-*/
 
-fs.readFile("builtin-modules/fileContainer/emails.json", "utf-8", (err, data) => {
-    if(err){
-        console.log("error:-----", err);
-    }else{
-        // returns data in buffer format
-        console.log("data: ", data)
-        // convert to string
-        // const stringData = data.toString();
-        // console.log("string data: ", stringData)
+
+fs.readFile(
+  "builtin-modules/fileContainer/emails.json",
+//   "utf-8",
+  (err, data) => {
+    if (err) {
+      console.log("error:-----", err);
+    } else {
+      // returns data in buffer format
+      console.log("data: ", data);
+      // convert to string
+      const stringData = data.toString();
+      console.log("string data: ", stringData)
     }
-})
-
-
-
-
-
-
-
-
-
-
-
-
+  }
+);
+*/
 // const createFile = async() => {
 //     // arguments
 //     // 1. file's path
@@ -130,4 +123,62 @@ fs.readFile("builtin-modules/fileContainer/emails.json", "utf-8", (err, data) =>
 
 // createFile();
 
-console.log("end");
+// const updateFile = async(filename, fileContent) => {
+//   try{
+//     const result = await fsAsync.access(filename);
+//     console.log("file already exist");
+//   }catch(err){
+//     console.log("error", err);
+//     // to create a file
+//   }
+// }
+// updateFile("builtin-modules/fileContainer/name11.txt")
+
+
+
+fs.rm("builtin-modules/fileContainer/name.txt", (err) => {
+    if(err){
+        console.log("error:-----", err);
+    }else{
+        console.log("file deleted successful");
+    }
+})
+
+// const removeFile = async() => {
+
+// }
+
+
+
+
+// ------------------Axios and Fetch Example
+// console.log("end");
+// fetch("https://fetchata.com", {
+//   method: "POST",
+// }).then(() => {});
+
+// axios.post();
+
+// const showProducts = async () => {
+//   try {
+//     const url =
+//       "https://academics.newtonschool.co/api/v1/bookingportals/offers";
+
+//     const response = await fetch(url, {
+//       method: "GET",
+//       headers: {
+//         projectId: "afznkxyf8vti",
+//       },
+//     });
+
+//     const json = await response.json();
+
+//     const offers = json.data.offers;
+
+//     setData(offers);
+
+//     console.log(offers);
+//   } catch (error) {
+//     console.error("Error fetching data:", error);
+//   }
+// };

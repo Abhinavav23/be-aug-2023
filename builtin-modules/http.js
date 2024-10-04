@@ -8,7 +8,11 @@ const serverHandler = (request, response) => {
     // console.log("from server handlder...");
     if(request.method === "GET"){
         if(request.url === "/login"){
-            response.write("<h1>Login Page</h1>");
+            response.writeHead(200, {"content-type": "text/plain"})
+            response.write("<h1>Login Page</h1> <input type='text'/> <input type='password'/> <input type='submit'/>");
+            // response.write("");
+            // response.write("");
+            // response.write("");
         } else if(request.url === "/signup"){
             response.write("Signup Page");
         } else if(request.url === "/data"){
@@ -21,7 +25,7 @@ const serverHandler = (request, response) => {
     }else{
         response.write("not supported")
     }
-    response.end("Ending Response");
+    response.end();
 }
 const server = http.createServer(serverHandler);
 

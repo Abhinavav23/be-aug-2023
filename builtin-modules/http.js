@@ -9,7 +9,7 @@ const serverHandler = (request, response) => {
     if(request.method === "GET"){
         if(request.url === "/login"){
             response.writeHead(200, {"content-type": "text/plain"})
-            response.write("<h1>Login Page</h1> <input type='text'/> <input type='password'/> <input type='submit'/>");
+            response.write("<h1>Login</h1> <input type='text'/> <input type='password'/> <input type='submit'/>");
             // response.write("");
             // response.write("");
             // response.write("");

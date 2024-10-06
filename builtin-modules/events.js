@@ -58,6 +58,7 @@ const Message = new EventEmitter();
 const sendMessage = (sender, receiver) => {
     // code to send message
     console.log(`sending message ---- from ${sender} to ${receiver}`);
+    // cbQueue.push(fileWriteCB)
 }
 
 const saveMessage = (sender, receiver) => {

@@ -13,3 +13,14 @@ http.request("http://localhost:4000/login", (res) => {
 
 
 // res.emit("data", myData)
+
+// function request(url, cb){
+//     fetch(url)
+//     .then((res) => {
+//         const myRes = new EventEmitter();
+//         cb(myRes);
+//         if(when i get data){
+//             myRes.emit("data", info)
+//         }
+//     })
+// }

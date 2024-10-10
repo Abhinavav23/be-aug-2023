@@ -23,7 +23,6 @@ server.get("/login", (req, res) => {
     res.send("<h1>Login Page</h1>");
 })
 
-
 // listen to requests
 const PORT = 5500
 server.listen(PORT, () => {
@@ -31,3 +30,14 @@ server.listen(PORT, () => {
 })
 
 
+/*
+function calculator(){
+    console.log("running calculator");
+}
+calculator.address = "Hyd"
+calculator();
+console.log("add", calculator.address);
+const userInfo = {
+    username: "abhinav"
+}
+*/

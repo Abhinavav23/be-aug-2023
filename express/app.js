@@ -48,20 +48,21 @@ app.all("*", (req, res) => {
 //  --------------middlewares -------------
 
 const checkLogin = (req, res, next) => {
-    console.log("checking user login status");
+    console.log("checking user login status"); //1
     
-    const username = ["vivek", "surgeet", "abhinav"]
     // any code -- code for checked user validity
-    const validUser = false
+    const validUser = true;
     if(validUser){
+        console.log("moving next"); //2
         next();
     }else{
+        console.log("going back");
         res.send({error: "please login first"})
     }
 }
 
 const logTheInfo = (req, res, next) => {
-    console.log("user visited");
+    console.log("user visited"); //3
     next();
 }
 
@@ -70,7 +71,7 @@ app.use(checkLogin); // 1
 app.use(logTheInfo); // 2
 
 app.get("/message", (req, res) => {
-    console.log("executing message handler");
+    console.log("executing message handler"); //4
     res.send("messages")
 })
 
@@ -79,8 +80,50 @@ app.get("/profile", (req, res) => {
     res.send("profile")
 })
 
-
 const PORT = 4500
 app.listen(PORT, () => {
     console.log(`express app running on port ${PORT}`);
 })
+
+
+
+
+/*
+console.log("start");
+for (var i = 0; i <= 3; i++) {
+    function print(i){
+        setTimeout(function () {
+            console.log(i); //0 //1 // 2
+        }, 1000 + i);
+    }
+    print(i);
+}
+console.log("end");
+
+// WebAPis
+// fn1 --> 1000 ---> i = 4
+// fn2 --> 1001
+// fn3 --> 1002
+
+
+function test(a){
+    var i = 10;
+    var z = 30;
+    var name = "abhinav"
+    return function myname(){
+        console.log("a",a);
+    }
+}
+
+const value = test(10);
+value();
+test(20);
+console.log("fvsdfvcs");
+console.log("fvsdfvcs");
+console.log("fvsdfvcs");
+console.log("fvsdfvcs");
+console.log("fvsdfvcs");
+console.log("fvsdfvcs");
+console.log("fvsdfvcs");
+value();
+*/

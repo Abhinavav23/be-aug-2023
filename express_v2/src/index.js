@@ -1,6 +1,12 @@
 const expressApp = require("./app");
+const dotenv = require("dotenv");
+dotenv.config();
 
-const PORT = 4000;
-expressApp.listen(PORT, () => {
-    console.log(`express app running at ${PORT}`);
+const PORTNumber = process.env.PORT;
+console.log("PORTNumber", PORTNumber);
+console.log("password", process.env.password);
+console.log("MongoDBConnectionURL", process.env.MongoDBConnectionURL);
+
+expressApp.listen(PORTNumber, () => {
+    console.log(`express app running at ${PORTNumber}`);
 })

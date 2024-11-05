@@ -1,10 +1,12 @@
 const express = require("express");
 const userRouter = require("./routes/userRoute");
+const productRouter = require("./routes/productRoute")
 const app = express();
 
 // middlewares
-app.use(express.json())
+app.use(express.json());
 app.use("/user", userRouter);
+app.use("/product", productRouter);
 
 module.exports = app;
 

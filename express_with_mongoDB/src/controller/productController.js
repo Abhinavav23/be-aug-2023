@@ -52,6 +52,42 @@ const getSingleProduct = (req, res) => {
       });
 };
 
+const getFilteredProducts = async (req, res) => {
+    const recievedQuery = req.query;
+    console.log("recievedQuery", recievedQuery);
+    // if(req.query.category){
+    //     try{
+    //        const filteredProduct =  await Product.find(req.query);
+    //        if(filteredProduct.length> 0){
+    //         res.send({message: "success", data: filteredProduct})
+    //        }else{
+    //         res.send({message: "success", data: "no data found"})
+    //        }
+           
+    //     }catch(err){
+    //         res.send({message: "failed", error: err})
+    //     }  
+    // }
+
+    // selecting specific information from documents
+    // const products =  await Product.find(req.query).select({quantity: 0, price: 0})
+    // const products =  await Product.find(req.query).select({name: 1, category: 1, inStock:1})
+
+
+    // select limited number of documents
+    // const products = await Product.find().limit(20);
+
+    // arithmatic operations
+    // greater than(>), less than(<), greater than equal to(>=), less than equal to(<=)
+
+    // const products = await Product.find({category: {$in: ["clothing", "Appliances"]}})
+    // const products = await Product.find({category: {$nin: ["clothing", "Appliances"]}})
+    const products = await Product.find({category: {$ne: "clothing"}})
+
+    res.json({total:products.length, data: products})
+
+}
+
 const updateProduct = (req, res) => {};
 
 module.exports = {
@@ -59,4 +95,5 @@ module.exports = {
   createProduct,
   updateProduct,
   getSingleProduct,
+  getFilteredProducts
 };

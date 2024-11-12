@@ -84,16 +84,80 @@ const getFilteredProducts = async (req, res) => {
     // const products = await Product.find({category: {$nin: ["clothing", "Appliances"]}})
     const products = await Product.find({category: {$ne: "clothing"}})
 
+    // Logical operators, AND, OR, NOR, NOT
+
+    // Regex
+
     res.json({total:products.length, data: products})
 
 }
 
-const updateProduct = (req, res) => {};
+const updateProduct = async(req, res) => {
+    console.log("productId", req.params.productId);
+
+    try{
+        // find the document with given id
+        // update the document with given data
+        // by default this method returns the old data
+        // const resData = await Product.findByIdAndUpdate(req.params.productId, {$set: req.body});
+
+        // if you want the updated data then you have to use a key called new: true
+        const updatedData = await Product.findByIdAndUpdate(req.params.productId, {$set: req.body}, {new: true});
+        if(updatedData){
+            res.json({message: "data updated successfully", data: updatedData})
+        }else{
+            res.json({message: "something went wrong!!"})
+        }
+        
+    }catch(err){
+        res.json({message: "failed", err: err.message})
+    }
+};
+
+const updateOrCreateProduct = async(req, res) => {
+    try{
+        // find the document with given id
+        // update the document with given data
+        // by default this method returns the old data
+        // const resData = await Product.findByIdAndUpdate(req.params.productId, {$set: req.body});
+        // if you want the updated data then you have to use a key called new: true
+        const info = await Product.findByIdAndUpdate(req.params.productId, {$set: req.body}, {new: true, upsert: true});
+        console.log("info", info);
+        res.send({message: "updated"})
+        
+    }catch(err){
+        res.json({message: "failed", err: err.message})
+    }
+}
+
+const deleteProduct = async(req, res) => {
+    try{
+        const removed = await Product.findByIdAndDelete(req.params.productId);
+        res.json({message: "data deleted successfully", removedItem: removed})
+    }catch(err){
+        res.json({message: "failed", err: err.message});
+    }
+}
+
+const getPaginatedProduct = async(req, res) => {
+    const {page, total} = req.query;
+    console.log("page", page);
+    console.log("total", total);
+    try{
+        const products = await Product.find().skip((page-1)*total).limit(total);
+        res.json({total: products.length, data: products})
+    }catch(err){
+        res.json({message: "failed", err: err.message});
+    }
+}
 
 module.exports = {
   getAllProducts,
   createProduct,
   updateProduct,
   getSingleProduct,
-  getFilteredProducts
+  getFilteredProducts,
+  updateOrCreateProduct,
+  deleteProduct,
+  getPaginatedProduct
 };
